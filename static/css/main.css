@@ -1,0 +1,87 @@
+html,
+body {
+  height: 100%;
+}
+
+#knitting {
+    padding-top: 16px;
+}
+
+#knitting .input-group-addon:first-child {
+    width: 65px;
+}
+
+#drawboard-wrapper {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 16px;
+}
+
+#drawboard {
+    margin: auto;
+}
+
+#letter-select {
+    margin-bottom: 16px;
+    background-color: #046D8B;
+    color: #ffffff;
+    font-weight: 400;
+    text-indent: 45%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+}
+
+.panel-primary {
+    border-color: #046D8B;
+}
+
+.panel-primary > .panel-heading {
+    border-color: #046D8B;
+    background-color: #046D8B;
+ }
+
+.input-tab {
+    display: none;
+}
+
+.input-tab.active {
+    display: block;
+}
+
+*[id^='raphael-letter'] {
+    stroke: 0;
+    fill: #046D8B;
+}
+
+*[id^='raphael-text-light'] {
+    fill: #ffffff;
+}
+
+*[id^='raphael-text-dark'] {
+    fill: #046D8B;
+}
+
+*[id^='raphael-spacer-light'] {
+    fill: #ffffff;
+}
+
+*[id^='raphael-spacer-dark'] {
+    fill: #046D8B;
+}
+
+
+@media screen and (min-width: 768px) {
+    #knitting {
+        height: 100%;
+        min-height: 450px;
+    }
+
+    #knitting-settings {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        width: 250px;
+    }
+}
