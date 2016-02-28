@@ -44,79 +44,84 @@
             <div id="drawboard-wrapper">
                 <div id="drawboard"></div>
             </div>
-            <div id="knitting-settings">
-                <select id="letter-select" class="form-control">
-                    <option value="a">A</option>
-                    <option value="e">E</option>
-                </select>
+        </div>
 
-                <div class="panel panel-primary">
-                    <div class="panel-heading">Maße</div>
-                    <div class="panel-body">
-                        <form>
+        <div id="knitting-settings">
+            <select id="letter-select" class="form-control">
+                <option value="a">A</option>
+                <option value="e">E</option>
+            </select>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">Maße</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Höhe</b></span>
+                                <input id="height" type="number" class="form-control input-change" placeholder="Höhe" min="1" step="0.5" value="50" aria-describedby="height-addon">
+                                <span class="input-group-addon" id="height-addon">cm</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><b>Breite</b></span>
+                                <input id="width" type="number" class="form-control input-change" placeholder="Breite" min="1" step="0.5" value="40" aria-describedby="width-addon">
+                                <span class="input-group-addon" id="width-addon">cm</span>
+                            </div>
+                        </div>
+                        <div class="input-tab active" id="inputs-a">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><b>Höhe</b></span>
-                                    <input id="height" type="number" class="form-control input-change" placeholder="Höhe" min="1" step="0.5" value="50" aria-describedby="height-addon">
-                                    <span class="input-group-addon" id="height-addon">cm</span>
+                                    <span class="input-group-addon"><b>a</b></span>
+                                    <input id="a-side-a" type="number" class="form-control input-change" placeholder="a" min="1" step="0.5" value="9" aria-describedby="a-side-a-addon">
+                                    <span class="input-group-addon" id="a-side-a-addon">cm</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><b>Breite</b></span>
-                                    <input id="width" type="number" class="form-control input-change" placeholder="Breite" min="1" step="0.5" value="40" aria-describedby="width-addon">
-                                    <span class="input-group-addon" id="width-addon">cm</span>
+                                    <span class="input-group-addon"><b>b</b></span>
+                                    <input id="a-side-b" type="number" class="form-control input-change" placeholder="b" min="1" step="0.5" value="10" aria-describedby="a-side-b-addon">
+                                    <span class="input-group-addon" id="a-side-b-addon">cm</span>
                                 </div>
                             </div>
-                            <div class="input-tab active" id="inputs-a">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><b>a</b></span>
-                                        <input id="a-side-a" type="number" class="form-control input-change" placeholder="a" min="1" step="0.5" value="9" aria-describedby="a-side-a-addon">
-                                        <span class="input-group-addon" id="a-side-a-addon">cm</span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><b>b</b></span>
-                                        <input id="a-side-b" type="number" class="form-control input-change" placeholder="b" min="1" step="0.5" value="10" aria-describedby="a-side-b-addon">
-                                        <span class="input-group-addon" id="a-side-b-addon">cm</span>
-                                    </div>
+                        </div>
+                        <div class="input-tab" id="inputs-e">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><b>a</b></span>
+                                    <input id="e-side-a" type="number" class="form-control input-change" placeholder="a" min="1" step="0.5" value="9" aria-describedby="e-side-a-addon">
+                                    <span class="input-group-addon" id="e-side-a-addon">cm</span>
                                 </div>
                             </div>
-                            <div class="input-tab" id="inputs-e">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><b>a</b></span>
-                                        <input id="e-side-a" type="number" class="form-control input-change" placeholder="a" min="1" step="0.5" value="9" aria-describedby="e-side-a-addon">
-                                        <span class="input-group-addon" id="e-side-a-addon">cm</span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><b>b</b></span>
-                                        <input id="e-side-b" type="number" class="form-control input-change" placeholder="b" min="1" step="0.5" value="10" aria-describedby="e-side-b-addon">
-                                        <span class="input-group-addon" id="e-side-b-addon">cm</span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><b>c</b></span>
-                                        <input id="e-side-c" type="number" class="form-control input-change" placeholder="c" min="0" step="0.5" value="10" aria-describedby="e-side-b-addon">
-                                        <span class="input-group-addon" id="e-side-b-addon">cm</span>
-                                    </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><b>b</b></span>
+                                    <input id="e-side-b" type="number" class="form-control input-change" placeholder="b" min="1" step="0.5" value="10" aria-describedby="e-side-b-addon">
+                                    <span class="input-group-addon" id="e-side-b-addon">cm</span>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">Umfang</div>
-                    <div class="panel-body">
-                        <p id="perimeter"></p>
-                    </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><b>c</b></span>
+                                    <input id="e-side-c" type="number" class="form-control input-change" placeholder="c" min="0" step="0.5" value="10" aria-describedby="e-side-b-addon">
+                                    <span class="input-group-addon" id="e-side-b-addon">cm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">Umfang</div>
+                <div class="panel-body">
+                    <p id="perimeter"></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="madeby">
+            by <a href="http://www.maxbothe.de">Max Bothe</a>
         </div>
 
         <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>

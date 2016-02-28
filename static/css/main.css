@@ -33,6 +33,16 @@ body {
     border: none;
 }
 
+#madeby {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+}
+
+#madeby a {
+    text-decoration: none;
+}
+
 .panel-primary {
     border-color: #046D8B;
 }
