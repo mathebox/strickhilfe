@@ -124,7 +124,7 @@ function calculatePerimeterA(width, height, a, b) {
     var e = Math.sqrt(Math.pow(height-b*Math.sin(alpha)-a*Math.sin(alpha)-a*Math.tan(alpha), 2) + Math.pow(f/2, 2));
     var perimeter1 = (2*(a+b+c)+d).toFixed(1);
     var perimeter2 = (2*e+f).toFixed(1);
-    document.getElementById('perimeter').innerHTML = `Umfang 1: ${perimeter1}cm<br/>Umfang 2: ${perimeter2}cm`;
+    $('#perimeter').html('Umfang 1: ' + perimeter1 + 'cm<br/>Umfang 2: ' + perimeter2 + 'cm');
 }
 
 function drawE(width, height, a, b, c) {
@@ -172,28 +172,28 @@ function drawE(width, height, a, b, c) {
 
 function calculatePerimeterE(width, height, a, b, c) {
     var perimeter = (2*(width+height)+2*(width-a)+2*(width-a-c)).toFixed(1);
-    document.getElementById('perimeter').innerHTML = `Umfang: ${perimeter}cm`;
+    $('#perimeter').html('Umfang: ' + perimeter + 'cm');
 }
 
 function recalculateA(width, height) {
-    var a = parseFloat(document.getElementById('a-side-a').value);
-    var b = parseFloat(document.getElementById('a-side-b').value);
+    var a = parseFloat($('#a-side-a').val());
+    var b = parseFloat($('#a-side-b').val());
     drawA(width, height, a, b);
     calculatePerimeterA(width, height, a, b);
 }
 
 function recalculateE(width, height) {
-    var a = parseFloat(document.getElementById('e-side-a').value);
-    var b = parseFloat(document.getElementById('e-side-b').value);
-    var c = parseFloat(document.getElementById('e-side-c').value);
+    var a = parseFloat($('#e-side-a').val());
+    var b = parseFloat($('#e-side-b').val());
+    var c = parseFloat($('#e-side-c').val());
     drawE(width, height, a, b, c);
     calculatePerimeterE(width, height, a, b, c);
 }
 
 function recalculate() {
-    var selectedLetter = document.getElementById('letter-select').value;
-    var height = parseFloat(document.getElementById('height').value);
-    var width = parseFloat(document.getElementById('width').value);
+    var selectedLetter = $('#letter-select').val();
+    var height = parseFloat($('#height').val());
+    var width = parseFloat($('#width').val());
     if (selectedLetter == 'a') {
         recalculateA(width, height);
     } else if (selectedLetter == 'e') {
@@ -202,21 +202,21 @@ function recalculate() {
 }
 
 function resizeDrawboard() {
-    var wrapper = document.getElementById('drawboard-wrapper');
-    var drawboard = document.getElementById('drawboard');
-    var width = wrapper.getBoundingClientRect().width;
-    var height = wrapper.getBoundingClientRect().height - 32;
+    var $wrapper = $('#drawboard-wrapper');
+    var $drawboard = $('#drawboard');
+    var width = $wrapper.get(0).getBoundingClientRect().width;
+    var height = $wrapper.get(0).getBoundingClientRect().height - 32;
     var widthToSet = Math.min(width, height);
-    drawboard.style.width = widthToSet + 'px';
+    $drawboard.css('width', widthToSet + 'px');
 }
 
 function changeInputs() {
-    var selectedLetter = document.getElementById('letter-select').value;
-    var tabId = `#inputs-${selectedLetter}`;
+    var selectedLetter = $('#letter-select').val();
+    var tabId = '#inputs-' + selectedLetter;
     $('.input-tab').removeClass('active');
     $(tabId).addClass('active');
     recalculate();
-    window.location.hash = `#${selectedLetter}`;
+    window.location.hash = '#' + selectedLetter;
 }
 
 window.onresize = function(event) {
@@ -224,13 +224,10 @@ window.onresize = function(event) {
 };
 resizeDrawboard();
 
-var elements = document.getElementsByClassName("input-change")
-Array.prototype.forEach.call(elements, function(el, idx, arr) {
-    el.addEventListener('change', recalculate, false);
-});
+$('#input-change').on('change', recalculate);
 recalculate();
 
-document.getElementById('letter-select').addEventListener('change', changeInputs, false);
+$('#letter-select').on('change', changeInputs);
 
 if (window.location.hash && window.location.hash.length == 2) {
     $('#letter-select').val(window.location.hash[1]);
