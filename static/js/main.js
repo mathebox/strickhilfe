@@ -7,6 +7,10 @@ svg.setAttribute('viewBox', '0 0 ' + realWidth + ' ' + realHeight);
 svg.removeAttribute('width');
 svg.removeAttribute('height');
 
+function transform(width, height) {
+    return {'x': realWidth/2 + width, 'y': realHeight/2 + height};
+}
+
 function drawSpacer(x1, y1, x2, y2, size, width, height) {
     size = typeof size !== 'undefined' ? size : 4;
     width = typeof width !== 'undefined' ? width : 2.5*size;
@@ -80,22 +84,22 @@ function drawA(width, height, a, b) {
     var heightOffset1 = (height/2)*ratio;
     var heightOffset2 = (height/2-b)*ratio;
     var dataPointsBig = new Array();
-    dataPointsBig.push({'x': realWidth/2 - widthOffset1, 'y': realHeight/2 + heightOffset1});  // a
-    dataPointsBig.push({'x': realWidth/2 - widthOffset2, 'y': realHeight/2 + heightOffset1});  // b
-    dataPointsBig.push({'x': realWidth/2 - widthOffset3, 'y': realHeight/2 + heightOffset2}); // c
-    dataPointsBig.push({'x': realWidth/2 + widthOffset3, 'y': realHeight/2 + heightOffset2}); // d
-    dataPointsBig.push({'x': realWidth/2 + widthOffset2, 'y': realHeight/2 + heightOffset1}); // e
-    dataPointsBig.push({'x': realWidth/2 + widthOffset1, 'y': realHeight/2 + heightOffset1}); // f
-    dataPointsBig.push({'x': realWidth/2, 'y': realHeight/2 - heightOffset1}); // g
+    dataPointsBig.push(transform(-widthOffset1, +heightOffset1));  // a
+    dataPointsBig.push(transform(-widthOffset2, +heightOffset1));  // b
+    dataPointsBig.push(transform(-widthOffset3, +heightOffset2)); // c
+    dataPointsBig.push(transform(+widthOffset3, +heightOffset2)); // d
+    dataPointsBig.push(transform(+widthOffset2, +heightOffset1)); // e
+    dataPointsBig.push(transform(+widthOffset1, +heightOffset1)); // f
+    dataPointsBig.push(transform(0, -heightOffset1)); // g
 
     // small hole
     var dataPointsSmall = new Array();
     var widthOffset4 = widthOffset3 - a*Math.sin(alpha)/Math.tan(alpha)*ratio;
     var heightOffset3 = height/2 - a/Math.tan(alpha)*ratio;
     var heightOffset4 = heightOffset2 - a*Math.sin(alpha)*ratio;
-    dataPointsSmall.push({'x': realWidth/2, 'y': realHeight/2 + heightOffset3})
-    dataPointsSmall.push({'x': realWidth/2 + widthOffset4, 'y': realHeight/2 + heightOffset4})
-    dataPointsSmall.push({'x': realWidth/2 - widthOffset4, 'y': realHeight/2 + heightOffset4})
+    dataPointsSmall.push(transform(0, +heightOffset3));
+    dataPointsSmall.push(transform(+widthOffset4, +heightOffset4));
+    dataPointsSmall.push(transform(-widthOffset4, +heightOffset4));
 
     var d = 'M' + $.map(dataPointsBig, function(el) { return el.x + ' ' + el.y}).join('L') + 'z';
     d += 'M' + $.map(dataPointsSmall, function(el) { return el.x + ' ' + el.y}).join('L') + 'z';
@@ -153,18 +157,18 @@ function drawE(width, height, a, b, c) {
     var heightOffset1 = (height/2)*ratio;
     var heightOffset2 = (height/2-b)*ratio;
     var heightOffset3 = (b/2)*ratio;
-    dataPoints.push({'x': realWidth/2 - widthOffset1, 'y': realHeight/2 + heightOffset1});
-    dataPoints.push({'x': realWidth/2 + widthOffset1, 'y': realHeight/2 + heightOffset1});
-    dataPoints.push({'x': realWidth/2 + widthOffset1, 'y': realHeight/2 + heightOffset2});
-    dataPoints.push({'x': realWidth/2 - widthOffset2, 'y': realHeight/2 + heightOffset2});
-    dataPoints.push({'x': realWidth/2 - widthOffset2, 'y': realHeight/2 + heightOffset3});
-    dataPoints.push({'x': realWidth/2 + widthOffset3, 'y': realHeight/2 + heightOffset3});
-    dataPoints.push({'x': realWidth/2 + widthOffset3, 'y': realHeight/2 - heightOffset3});
-    dataPoints.push({'x': realWidth/2 - widthOffset2, 'y': realHeight/2 - heightOffset3});
-    dataPoints.push({'x': realWidth/2 - widthOffset2, 'y': realHeight/2 - heightOffset2});
-    dataPoints.push({'x': realWidth/2 + widthOffset1, 'y': realHeight/2 - heightOffset2});
-    dataPoints.push({'x': realWidth/2 + widthOffset1, 'y': realHeight/2 - heightOffset1});
-    dataPoints.push({'x': realWidth/2 - widthOffset1, 'y': realHeight/2 - heightOffset1});
+    dataPoints.push(transform(-widthOffset1, +heightOffset1));
+    dataPoints.push(transform(+widthOffset1, +heightOffset1));
+    dataPoints.push(transform(+widthOffset1, +heightOffset2));
+    dataPoints.push(transform(-widthOffset2, +heightOffset2));
+    dataPoints.push(transform(-widthOffset2, +heightOffset3));
+    dataPoints.push(transform(+widthOffset3, +heightOffset3));
+    dataPoints.push(transform(+widthOffset3, -heightOffset3));
+    dataPoints.push(transform(-widthOffset2, -heightOffset3));
+    dataPoints.push(transform(-widthOffset2, -heightOffset2));
+    dataPoints.push(transform(+widthOffset1, -heightOffset2));
+    dataPoints.push(transform(+widthOffset1, -heightOffset1));
+    dataPoints.push(transform(-widthOffset1, -heightOffset1));
 
     var d = 'M' + $.map(dataPoints, function(el) { return el.x + ' ' + el.y}).join('L') + 'z';
 
