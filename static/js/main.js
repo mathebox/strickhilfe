@@ -145,20 +145,29 @@ function drawE(width, height, a, b, c) {
     paper.clear();
 
     var ratio = realWidth/Math.max(width, height);
-    // big shape
-    var d = `M ${realWidth/2-(width/2*ratio)},${realHeight/2+(height/2*ratio)}`;
-    d += ` L ${realWidth/2+(width/2*ratio)},${realHeight/2+(height/2*ratio)}`;
-    d += ` L ${realWidth/2+(width/2*ratio)},${realHeight/2+(height/2*ratio)-(b*ratio)}`;
-    d += ` L ${realWidth/2-(width/2*ratio)+(a*ratio)},${realHeight/2+(height/2*ratio)-(b*ratio)}`;
-    d += ` L ${realWidth/2-(width/2*ratio)+(a*ratio)},${realHeight/2+(b/2*ratio)}`;
-    d += ` L ${realWidth/2+(width/2*ratio)-(c*ratio)},${realHeight/2+(b/2*ratio)}`;
-    d += ` L ${realWidth/2+(width/2*ratio)-(c*ratio)},${realHeight/2-(b/2*ratio)}`;
-    d += ` L ${realWidth/2-(width/2*ratio)+(a*ratio)},${realHeight/2-(b/2*ratio)}`;
-    d += ` L ${realWidth/2-(width/2*ratio)+(a*ratio)},${realHeight/2-(height/2*ratio)+(b*ratio)}`;
-    d += ` L ${realWidth/2+(width/2*ratio)},${realHeight/2-(height/2*ratio)+(b*ratio)}`;
-    d += ` L ${realWidth/2+(width/2*ratio)},${realHeight/2-(height/2*ratio)}`;
-    d += ` L ${realWidth/2-(width/2*ratio)},${realHeight/2-(height/2*ratio)}`;
-    d += `z`
+    // shape
+    var dataPoints = new Array();
+    var widthOffset1 = (width/2)*ratio;
+    var widthOffset2 = (width/2-a)*ratio;
+    var widthOffset3 = (width/2-c)*ratio;
+    var heightOffset1 = (height/2)*ratio;
+    var heightOffset2 = (height/2-b)*ratio;
+    var heightOffset3 = (b/2)*ratio;
+    dataPoints.push({'x': realWidth/2 - widthOffset1, 'y': realHeight/2 + heightOffset1});
+    dataPoints.push({'x': realWidth/2 + widthOffset1, 'y': realHeight/2 + heightOffset1});
+    dataPoints.push({'x': realWidth/2 + widthOffset1, 'y': realHeight/2 + heightOffset2});
+    dataPoints.push({'x': realWidth/2 - widthOffset2, 'y': realHeight/2 + heightOffset2});
+    dataPoints.push({'x': realWidth/2 - widthOffset2, 'y': realHeight/2 + heightOffset3});
+    dataPoints.push({'x': realWidth/2 + widthOffset3, 'y': realHeight/2 + heightOffset3});
+    dataPoints.push({'x': realWidth/2 + widthOffset3, 'y': realHeight/2 - heightOffset3});
+    dataPoints.push({'x': realWidth/2 - widthOffset2, 'y': realHeight/2 - heightOffset3});
+    dataPoints.push({'x': realWidth/2 - widthOffset2, 'y': realHeight/2 - heightOffset2});
+    dataPoints.push({'x': realWidth/2 + widthOffset1, 'y': realHeight/2 - heightOffset2});
+    dataPoints.push({'x': realWidth/2 + widthOffset1, 'y': realHeight/2 - heightOffset1});
+    dataPoints.push({'x': realWidth/2 - widthOffset1, 'y': realHeight/2 - heightOffset1});
+
+    var d = 'M' + $.map(dataPoints, function(el) { return el.x + ' ' + el.y}).join('L') + 'z';
+
     p = paper.path(d);
     p.node.id = 'raphael-letter';
     p.attr({
